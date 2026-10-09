@@ -1,0 +1,12 @@
+# ADR-0022: aberto pelo app em "Ajuda e feedback" com o campo preenchido (idea).
+name: Sugerir uma ideia / Suggest an idea
+description: Algo que deixaria o RL Tracker melhor para você. / Something that would make RL Tracker better for you.
+labels: [ideia]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Qual é a ideia? / What is the idea?
+      description: O que você gostaria de ver e que problema isso resolveria. / What you would like to see and what problem it would solve.
+    validations:
+      required: true
