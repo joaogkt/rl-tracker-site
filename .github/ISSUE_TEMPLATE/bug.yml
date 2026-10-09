@@ -1,0 +1,28 @@
+# ADR-0022: aberto pelo app em "Ajuda e feedback" com os campos preenchidos (what, technical).
+name: Relatar um problema / Report a problem
+description: Algo não funcionou no RL Tracker. / Something did not work in RL Tracker.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Não escreva nomes de outros jogadores nem dados pessoais. / Do not write other players' names or personal data.
+        Se puder, anexe o pacote de diagnóstico (Ajuda e feedback → Gerar pacote). / If you can, attach the diagnostics package (Help and feedback → Make package).
+  - type: textarea
+    id: what
+    attributes:
+      label: O que aconteceu? / What happened?
+      description: O que você fez, o que esperava e o que aconteceu. / What you did, what you expected and what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: technical
+    attributes:
+      label: Resumo técnico / Technical summary
+      description: Preenchido pelo app (versões, estados e códigos, sem nomes). / Filled in by the app (versions, states and codes, no names).
+      render: text
+  - type: textarea
+    id: package
+    attributes:
+      label: Pacote de diagnóstico / Diagnostics package
+      description: Arraste o .zip aqui. / Drag the .zip here.
