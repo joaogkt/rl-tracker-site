@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RL Tracker</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0E1522">
 <meta name="description" content="RL Tracker acompanha suas partidas de Rocket League pela Stats API oficial e mostra quando parar, com quem você vence e como você joga.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -465,7 +469,7 @@ footer p { max-width: 70ch; }
     <div class="wrap privacy">
       <div class="copy">
         <h2 data-i18n="priv.title">Seus dados são seus</h2>
-        <p class="lead" data-i18n="priv.lead">O RL Tracker roda inteiro no seu computador. Não há servidor nosso guardando as suas partidas.</p>
+        <p class="lead" data-i18n="priv.lead">O RL Tracker roda inteiro no seu computador. Não há servidor nosso guardando as suas partidas, e a busca por versões novas no GitHub só acontece se você ligar.</p>
       </div>
       <div class="facts">
         <div><h3 data-i18n="priv.f1.t">Numa pasta sua</h3><p data-i18n="priv.f1.d">Partidas, sessões e configurações ficam em %LOCALAPPDATA%\RLTracker.</p></div>
@@ -491,7 +495,7 @@ footer p { max-width: 70ch; }
     <div class="wrap download">
       <div class="copy">
         <h2 data-i18n="dl.title">Baixar o RL Tracker</h2>
-        <p class="lead" data-i18n="dl.lead">Versão 0.1, em beta. Instala só para o seu usuário do Windows e vem com tudo o que precisa.</p>
+        <p class="lead" data-i18n="dl.lead">Versão beta. Instala só para o seu usuário do Windows e vem com tudo o que precisa.</p>
         <div class="cta">
           <a class="btn primary" id="dl-button" href="#baixar">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 20h14"/></svg>
@@ -517,6 +521,7 @@ footer p { max-width: 70ch; }
         <details><summary data-i18n="faq.q2">Funciona no console?</summary><p data-i18n="faq.a2">Não. A Stats API existe só no Rocket League para PC, então o RL Tracker é para Windows.</p></details>
         <details><summary data-i18n="faq.q3">Mostra meu rank e MMR?</summary><p data-i18n="faq.a3">Ainda não. O jogo não oferece o rank por uma API pública, e estamos pedindo acesso à Psyonix para mostrar a sua evolução de rank com dados reais.</p></details>
         <details><summary data-i18n="faq.q4">Preciso deixar o app aberto?</summary><p data-i18n="faq.a4">Sim, enquanto joga. Você pode fechar a janela: ele continua no ícone perto do relógio e só para quando você escolhe Sair.</p></details>
+        <details><summary data-i18n="faq.q6">Como atualizo o RL Tracker?</summary><p data-i18n="faq.a6">Em Preparação, ligue "Procurar versões novas automaticamente" (ou clique em Procurar agora). Quando houver versão nova, clique em Atualizar agora: o app baixa, confere a assinatura e instala sozinho. Quem tem a versão 0.1.0 baixa a nova por esta página uma vez.</p></details>
         <details><summary data-i18n="faq.q5">Atualizei o jogo e as partidas pararam de aparecer.</summary><p data-i18n="faq.a5">As atualizações do Rocket League desligam a Stats API. O RL Tracker percebe sozinho e mostra o botão Ativar; o Windows pede permissão só para essa linha do arquivo do jogo.</p></details>
       </div>
     </div>
@@ -578,7 +583,7 @@ const T = {
     'stream.p1': 'Escolha o que aparece e o tamanho, em português ou inglês.', 'stream.p2': 'Mostra só números da sessão, nunca nomes de outros jogadores.', 'stream.p3': 'Gere um link novo quando quiser, e o antigo para de funcionar.',
     'scene.desc': 'Exemplo de cena do OBS com o overlay do RL Tracker no canto superior direito.', 'scene.tag': 'Fonte de navegador no OBS',
     'ov.session': 'Sessão', 'ov.streak': 'Sequência', 'ov.streakV': '2V', 'ov.stop': 'Parar em', 'ov.stopV': '2 partidas',
-    'priv.title': 'Seus dados são seus', 'priv.lead': 'O RL Tracker roda inteiro no seu computador. Não há servidor nosso guardando as suas partidas.',
+    'priv.title': 'Seus dados são seus', 'priv.lead': 'O RL Tracker roda inteiro no seu computador. Não há servidor nosso guardando as suas partidas, e a busca por versões novas no GitHub só acontece se você ligar.',
     'priv.f1.t': 'Numa pasta sua', 'priv.f1.d': 'Partidas, sessões e configurações ficam em %LOCALAPPDATA%\\RLTracker.',
     'priv.f2.t': 'Nomes só com você', 'priv.f2.d': 'Os nomes de parceiros e adversários ficam só no seu computador, e você pode esquecer qualquer um.',
     'priv.f3.t': 'Excluir tudo', 'priv.f3.d': 'Um botão na tela Armazenamento apaga todo o histórico. Você também escolhe por quanto tempo guardar os detalhes.',
@@ -587,7 +592,7 @@ const T = {
     'start.s1.t': 'Instale', 'start.s1.d': 'O instalador não pede senha de administrador. No fim, ele oferece ligar a Stats API do jogo: muda só uma linha da configuração, com cópia de segurança.',
     'start.s2.t': 'Digite seu nome', 'start.s2.d': 'Exatamente como aparece no Rocket League. O app encontra a sua conta na primeira partida.',
     'start.s3.t': 'Inicie a sessão e jogue', 'start.s3.d': 'Pode fechar a janela: o RL Tracker continua coletando no ícone perto do relógio.',
-    'dl.title': 'Baixar o RL Tracker', 'dl.lead': 'Versão 0.1, em beta. Instala só para o seu usuário do Windows e vem com tudo o que precisa.',
+    'dl.title': 'Baixar o RL Tracker', 'dl.lead': 'Versão beta. Instala só para o seu usuário do Windows e vem com tudo o que precisa.',
     'dl.note': 'O Windows pode mostrar "O Windows protegeu o computador". Clique em Mais informações e depois em Executar assim mesmo: o instalador ainda não tem certificado de assinatura.',
     'dl.beta': 'Durante o beta, o instalador é enviado direto aos testadores. O download público abre em breve nesta página.',
     'req.os': 'Sistema', 'req.osV': 'Windows 10 ou 11', 'req.game': 'Jogo', 'req.gameV': 'Rocket League da Epic ou da Steam',
@@ -597,6 +602,7 @@ const T = {
     'faq.q2': 'Funciona no console?', 'faq.a2': 'Não. A Stats API existe só no Rocket League para PC, então o RL Tracker é para Windows.',
     'faq.q3': 'Mostra meu rank e MMR?', 'faq.a3': 'Ainda não. O jogo não oferece o rank por uma API pública, e estamos pedindo acesso à Psyonix para mostrar a sua evolução de rank com dados reais.',
     'faq.q4': 'Preciso deixar o app aberto?', 'faq.a4': 'Sim, enquanto joga. Você pode fechar a janela: ele continua no ícone perto do relógio e só para quando você escolhe Sair.',
+    'faq.q6': 'Como atualizo o RL Tracker?', 'faq.a6': 'Em Preparação, ligue "Procurar versões novas automaticamente" (ou clique em Procurar agora). Quando houver versão nova, clique em Atualizar agora: o app baixa, confere a assinatura e instala sozinho. Quem tem a versão 0.1.0 baixa a nova por esta página uma vez.',
     'faq.q5': 'Atualizei o jogo e as partidas pararam de aparecer.', 'faq.a5': 'As atualizações do Rocket League desligam a Stats API. O RL Tracker percebe sozinho e mostra o botão Ativar; o Windows pede permissão só para essa linha do arquivo do jogo.',
     'footer.legal': 'O RL Tracker é um projeto independente, sem vínculo com a Psyonix ou a Epic Games. Rocket League é marca registrada da Psyonix LLC.',
     'meta.description': 'RL Tracker acompanha suas partidas de Rocket League pela Stats API oficial e mostra quando parar, com quem você vence e como você joga.'
@@ -641,7 +647,7 @@ const T = {
     'stream.p1': 'Choose what shows and how big, in Portuguese or English.', 'stream.p2': 'Shows only session numbers, never other players’ names.', 'stream.p3': 'Make a new link whenever you want, and the old one stops working.',
     'scene.desc': 'Example OBS scene with the RL Tracker overlay in the top right corner.', 'scene.tag': 'Browser source in OBS',
     'ov.session': 'Session', 'ov.streak': 'Streak', 'ov.streakV': '2W', 'ov.stop': 'Stop in', 'ov.stopV': '2 matches',
-    'priv.title': 'Your data is yours', 'priv.lead': 'RL Tracker runs entirely on your computer. There is no server of ours storing your matches.',
+    'priv.title': 'Your data is yours', 'priv.lead': 'RL Tracker runs entirely on your computer. There is no server of ours storing your matches, and the check for new versions on GitHub only happens if you turn it on.',
     'priv.f1.t': 'In a folder of yours', 'priv.f1.d': 'Matches, sessions and settings stay in %LOCALAPPDATA%\\RLTracker.',
     'priv.f2.t': 'Names stay with you', 'priv.f2.d': 'Partner and opponent names stay only on your computer, and you can forget anyone.',
     'priv.f3.t': 'Delete everything', 'priv.f3.d': 'One button on the Storage screen erases your whole history. You also choose how long to keep the details.',
@@ -650,7 +656,7 @@ const T = {
     'start.s1.t': 'Install', 'start.s1.d': 'The installer does not ask for an administrator password. At the end it offers to turn on the game’s Stats API: it changes one settings line and keeps a backup.',
     'start.s2.t': 'Type your name', 'start.s2.d': 'Exactly as it appears in Rocket League. The app finds your account in the first match.',
     'start.s3.t': 'Start the session and play', 'start.s3.d': 'You can close the window: RL Tracker keeps collecting from the icon next to the clock.',
-    'dl.title': 'Download RL Tracker', 'dl.lead': 'Version 0.1, in beta. It installs for your Windows user only and comes with everything it needs.',
+    'dl.title': 'Download RL Tracker', 'dl.lead': 'Beta version. It installs for your Windows user only and comes with everything it needs.',
     'dl.note': 'Windows may show "Windows protected your PC". Click More info and then Run anyway: the installer has no signing certificate yet.',
     'dl.beta': 'During the beta, the installer goes straight to testers. The public download opens on this page soon.',
     'req.os': 'System', 'req.osV': 'Windows 10 or 11', 'req.game': 'Game', 'req.gameV': 'Rocket League from Epic or Steam',
@@ -660,6 +666,7 @@ const T = {
     'faq.q2': 'Does it work on console?', 'faq.a2': 'No. The Stats API only exists in Rocket League for PC, so RL Tracker is for Windows.',
     'faq.q3': 'Does it show my rank and MMR?', 'faq.a3': 'Not yet. The game does not offer rank through a public API, and we are asking Psyonix for access so we can show your rank progress with real data.',
     'faq.q4': 'Do I need to keep the app open?', 'faq.a4': 'Yes, while you play. You can close the window: it stays in the icon next to the clock and only stops when you choose Quit.',
+    'faq.q6': 'How do I update RL Tracker?', 'faq.a6': 'In Setup, turn on "Check for new versions automatically" (or click Check now). When a new version exists, click Update now: the app downloads it, checks the signature and installs it by itself. If you have version 0.1.0, download the new one from this page once.',
     'faq.q5': 'I updated the game and my matches stopped showing up.', 'faq.a5': 'Rocket League updates turn the Stats API off. RL Tracker notices by itself and shows a Turn on button; Windows asks for permission for that one line of the game file only.',
     'footer.legal': 'RL Tracker is an independent project, not affiliated with Psyonix or Epic Games. Rocket League is a registered trademark of Psyonix LLC.',
     'meta.description': 'RL Tracker follows your Rocket League matches through the official Stats API and shows when to stop, who you win with and how you play.'
