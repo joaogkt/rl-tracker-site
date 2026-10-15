@@ -470,6 +470,7 @@ footer p { max-width: 70ch; }
       <div class="copy">
         <h2 data-i18n="priv.title">Seus dados são seus</h2>
         <p class="lead" data-i18n="priv.lead">O RL Tracker roda inteiro no seu computador. Não há servidor nosso guardando as suas partidas, e a busca por versões novas no GitHub só acontece se você ligar.</p>
+        <p class="note" data-i18n="priv.site">Este site conta visitas e cliques em Baixar com o Umami, sem cookies e sem guardar o seu IP: só país, navegador e de onde você veio. O app não envia nada.</p>
       </div>
       <div class="facts">
         <div><h3 data-i18n="priv.f1.t">Numa pasta sua</h3><p data-i18n="priv.f1.d">Partidas, sessões e configurações ficam em %LOCALAPPDATA%\RLTracker.</p></div>
@@ -541,6 +542,17 @@ footer p { max-width: 70ch; }
 <script>
 /* Public download address of the installer (latest GitHub release). Empty shows "coming soon". */
 const DOWNLOAD_URL = 'https://github.com/joaogkt/rl-tracker-site/releases/latest/download/RL-Tracker-setup.exe';
+/* Site statistics (Umami Cloud, no cookies): the website ID from Umami → Settings → Websites → Tracking code.
+   Empty loads nothing. Counts only on rltracker.com.br, so opening the file locally is not counted. */
+const UMAMI_WEBSITE_ID = '11c44dff-d88d-44fc-9d39-fc54411546cd';
+if (UMAMI_WEBSITE_ID) {
+  const tag = document.createElement('script');
+  tag.defer = true;
+  tag.src = 'https://cloud.umami.is/script.js';
+  tag.dataset.websiteId = UMAMI_WEBSITE_ID;
+  tag.dataset.domains = 'rltracker.com.br,www.rltracker.com.br';
+  document.head.appendChild(tag);
+}
 
 const T = {
   'pt-BR': {
@@ -587,6 +599,7 @@ const T = {
     'priv.f1.t': 'Numa pasta sua', 'priv.f1.d': 'Partidas, sessões e configurações ficam em %LOCALAPPDATA%\\RLTracker.',
     'priv.f2.t': 'Nomes só com você', 'priv.f2.d': 'Os nomes de parceiros e adversários ficam só no seu computador, e você pode esquecer qualquer um.',
     'priv.f3.t': 'Excluir tudo', 'priv.f3.d': 'Um botão na tela Armazenamento apaga todo o histórico. Você também escolhe por quanto tempo guardar os detalhes.',
+    'priv.site': 'Este site conta visitas e cliques em Baixar com o Umami, sem cookies e sem guardar o seu IP: só país, navegador e de onde você veio. O app não envia nada.',
     'priv.f4.t': 'Sem conta e sem anúncios', 'priv.f4.d': 'Você só digita o seu nome no jogo, para o app saber qual jogador é você.',
     'start.title': 'Comece em três passos',
     'start.s1.t': 'Instale', 'start.s1.d': 'O instalador não pede senha de administrador. No fim, ele oferece ligar a Stats API do jogo: muda só uma linha da configuração, com cópia de segurança.',
@@ -651,6 +664,7 @@ const T = {
     'priv.f1.t': 'In a folder of yours', 'priv.f1.d': 'Matches, sessions and settings stay in %LOCALAPPDATA%\\RLTracker.',
     'priv.f2.t': 'Names stay with you', 'priv.f2.d': 'Partner and opponent names stay only on your computer, and you can forget anyone.',
     'priv.f3.t': 'Delete everything', 'priv.f3.d': 'One button on the Storage screen erases your whole history. You also choose how long to keep the details.',
+    'priv.site': 'This site counts visits and Download clicks with Umami, without cookies and without storing your IP: only country, browser and where you came from. The app sends nothing.',
     'priv.f4.t': 'No account, no ads', 'priv.f4.d': 'You only type your in-game name, so the app knows which player is you.',
     'start.title': 'Get started in three steps',
     'start.s1.t': 'Install', 'start.s1.d': 'The installer does not ask for an administrator password. At the end it offers to turn on the game’s Stats API: it changes one settings line and keeps a backup.',
@@ -736,6 +750,10 @@ try {
   if (!/^pt\b/i.test(navigator.language || 'pt')) start = 'en-US';
 }
 document.querySelectorAll('.lang button').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
+document.getElementById('dl-button').addEventListener('click', () => {
+  if (!DOWNLOAD_URL) return;
+  try { window.umami && window.umami.track('download', { lang: document.documentElement.lang }); } catch (e) { /* statistics are optional */ }
+});
 setLang(start);
 </script>
 </body>
